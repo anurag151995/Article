@@ -1,0 +1,73 @@
+<h1>Listing Articles</h1>
+<%#-----for new Article-----------------------%>
+<table>
+  <h3>create new  Article below</h3>
+  <p><input type="button" value="create article" onclick="showDiv()"/></p>
+    <div id="articleDiv"  style="display:none;" >
+     <%= form_tag articles_path, remote: true do %>
+       <label>Name:</label>
+        <%= text_field_tag :'article[title]' %><br><br>
+       <label>Text:</label>
+       <%= text_field_tag :'article[text]' %><br><br>
+       <%= submit_tag "submit" %>
+    <% end %>
+    </div>
+</table>
+
+<script>
+  function showDiv() {
+   document.getElementById('articleDiv').style.display = "block";
+}
+</script>
+
+<%#----------------------------------------------------------%>
+  <table class="demo">
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @articles.each  do |article| %>
+    <tr id=article_<%=article.id%>>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><input type="button" value="create comment" onclick="hideDiv()"/></td>
+      <td><%= link_to 'comment',new_comment_path(article), remote: true%></td>
+      <td><%#= link_to 'show', article_path(article) %></td>
+
+    </tr>
+  <% end %>
+</table>
+
+<%#= link_to 'New article', new_article_path %>
+<%#---------for comments------------------------%>
+<div>
+  <h3>  create your comment for article....</h3>
+  <div id="commentDiv"  style="display:none;" >
+   <%= form_tag articles_path ,remote: true do %>
+     <label>Commenter:</label>
+      <%= text_field_tag :'comment[commenter]' %><br><br>
+     <label>Body:</label>
+     <%= text_field_tag :'comment[body]' %><br><br>
+     <%= submit_tag "submit" %>
+  <% end %>
+  </div>
+</div>
+  
+<script>
+  function hideDiv() {
+   document.getElementById('commentDiv').style.display = "block";
+}
+</script>
+<%#--------------------------------------------------------------%>
+
+<h2>Greetings</h2>
+<div class="container">
+  <div class="inner">Hello</div>
+  <div class="inner">Goodbye</div>
+</div>
+
+<script>
+  $( ".inner" ).append( "<p>Test</p>" );
+</script>

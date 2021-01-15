@@ -1,0 +1,10 @@
+<%= form_tag articles_path, remote: true do %>
+   <label>Name:</label>
+   	<%= text_field_tag :'article[title]' %><br><br>
+   <label>Text:</label>
+   <%= text_field_tag :'article[text]' %><br><br>
+   <%= submit_tag "create" %>
+<% end %>
+
+
+
